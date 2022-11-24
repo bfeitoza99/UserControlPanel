@@ -1,7 +1,19 @@
+using Microsoft.OpenApi.Models;
+
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
-builder.Services.AddRazorPages();
+
+builder.Services.AddSwaggerGen(c =>
+{
+    c.SwaggerDoc("v1", new OpenApiInfo { Title = "UserControlPanel", Version = "v1", });
+});
+
+builder.Services.AddEndpointsApiExplorer();
+
+
+
+builder.Services.AddControllers();
+
 
 var app = builder.Build();
 
@@ -13,13 +25,30 @@ if (!app.Environment.IsDevelopment())
     app.UseHsts();
 }
 
+app.UseSwaggerUI(c =>
+{
+    c.RoutePrefix = string.Empty;
+    c.SwaggerEndpoint("/swagger/v1/swagger.json", "v1");
+});
 app.UseHttpsRedirection();
-app.UseStaticFiles();
 
 app.UseRouting();
 
+app.UseCors(x => x
+              .AllowAnyMethod()
+              .AllowAnyHeader()
+              .SetIsOriginAllowed(origin => true)
+              .AllowCredentials());
+
 app.UseAuthorization();
 
-app.MapRazorPages();
+app.UseEndpoints(endpoints =>
+{
+    endpoints.MapControllers();
+});
+
+app.UseSwagger(x=> x.SerializeAsV2 = true);
+
+
 
 app.Run();
