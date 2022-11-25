@@ -15,21 +15,21 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "4- Infra", "4- Infra", "{D5
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "5- UnitTests", "5- UnitTests", "{73B85CE9-2EC9-4595-A73D-85049A18A422}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UserControlPanel.API", "UserControlPanel.API\UserControlPanel.API.csproj", "{A67F48DA-FE2E-47C9-96BD-4E38FA79A8BD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "API", "UserControlPanel.API\API.csproj", "{A67F48DA-FE2E-47C9-96BD-4E38FA79A8BD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UserControlPanel.Application", "UserControlPanel.Application\UserControlPanel.Application.csproj", "{329F43E2-1DF9-450E-9245-312DA3A938D8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UserControlPanel.Application", "UserControlPanel.Application\UserControlPanel.Application.csproj", "{329F43E2-1DF9-450E-9245-312DA3A938D8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UserControlPanel.Domain", "UserControlPanel.Domain\UserControlPanel.Domain.csproj", "{73DB9C12-6D30-4694-9BA6-63A64309830D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UserControlPanel.Domain", "UserControlPanel.Domain\UserControlPanel.Domain.csproj", "{73DB9C12-6D30-4694-9BA6-63A64309830D}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "4.1- Data", "4.1- Data", "{2E0B00AF-CF5F-419C-A63F-BCB6FF075C22}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "4.2- CrossCutting", "4.2- CrossCutting", "{7149F074-CE9D-4AC2-A76D-1A587C102BAB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UserControlPanel.Data", "UserControlPanel.Data\UserControlPanel.Data.csproj", "{BA12ABA1-C9A0-4F68-A32F-8F76898CB1DB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UserControlPanel.Data", "UserControlPanel.Data\UserControlPanel.Data.csproj", "{BA12ABA1-C9A0-4F68-A32F-8F76898CB1DB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UserControlPanel.CrossCutting", "UserControlPanel.CrossCutting\UserControlPanel.CrossCutting.csproj", "{8237528B-591F-4F47-B72F-83E69DB53A9D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UserControlPanel.CrossCutting", "UserControlPanel.CrossCutting\UserControlPanel.CrossCutting.csproj", "{8237528B-591F-4F47-B72F-83E69DB53A9D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UserControlPanel.Tests", "UserControlPanel.Tests\UserControlPanel.Tests.csproj", "{3EF8B220-51E3-4A11-AB9C-60C4FB9185DD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UserControlPanel.Tests", "UserControlPanel.Tests\UserControlPanel.Tests.csproj", "{3EF8B220-51E3-4A11-AB9C-60C4FB9185DD}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
