@@ -49,7 +49,9 @@ namespace UserControlPanel.API
                 {
                     x.MigrationsAssembly("UserControlPanel.Data");
                 });
-            });            
+            });
+
+            services.AddAutoMapper(typeof(Application.AutoMapper.AutoMapperSetup));
 
             services.AddEndpointsApiExplorer();
 
