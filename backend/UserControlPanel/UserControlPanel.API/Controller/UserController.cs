@@ -1,5 +1,11 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using MediatR;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
+using System.Threading.Tasks;
+using System;
+using UserControlPanel.Application.Query.UserAdress;
+using UserControlPanel.Application.Command.User;
 
 namespace UserControlPanel.API.Controller
 {
@@ -7,14 +13,26 @@ namespace UserControlPanel.API.Controller
     [ApiController]
     public class UserController : ControllerBase
     {
-        
+
 
         [HttpPost]
-        public IActionResult Index()
+        public async Task<IActionResult> Get([FromServices] IMediator mediator,
+                                                    [FromServices] ILogger<UserAdressController> _logger,
+                                                    UserCommandRequest command)
         {
-            return Ok();
+            try
+            {
+                _logger.LogInformation($"Save a new user with name: {command.Name}");                
+                var result = await mediator.Send(command);
+                return Ok(result);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogInformation(ex.Message);
+                return BadRequest(StatusCodes.Status400BadRequest);
+            }
         }
 
-       
+
     }
 }

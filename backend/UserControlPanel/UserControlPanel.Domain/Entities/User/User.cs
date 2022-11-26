@@ -11,7 +11,7 @@ namespace UserControlPanel.Domain.Entities.User
     {
         public User()
         {
-
+            UserAdress = new UserAdress();
         }
         public string Cpf { get; set; }
         public string Name { get; set; }
