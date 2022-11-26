@@ -7,6 +7,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
 using Microsoft.OpenApi.Models;
 using System;
+using UserControlPanel.CrossCutting.DependencyInjection;
 using UserControlPanel.Data;
 
 namespace UserControlPanel.API
@@ -33,6 +34,12 @@ namespace UserControlPanel.API
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "UserControlPanel", Version = "v1", });
             });
 
+            services.AddServicesFrom(new[]
+            {
+                "UserControlPanel.Application",
+                "UserControlPanel.Data"
+            });
+
             var applicationAssembly = AppDomain.CurrentDomain.Load("UserControlPanel.Application");
             services.AddMediatR(applicationAssembly);
 
@@ -52,11 +59,7 @@ namespace UserControlPanel.API
 
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
-        {
-            //if (env.EnvironmentName)
-            //{
-            //    app.UseDeveloperExceptionPage();
-            //}
+        {           
 
             app.UseSwaggerUI(c =>
             {

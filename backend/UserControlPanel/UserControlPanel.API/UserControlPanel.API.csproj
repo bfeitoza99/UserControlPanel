@@ -23,6 +23,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\UserControlPanel.Application\UserControlPanel.Application.csproj" />
+    <ProjectReference Include="..\UserControlPanel.CrossCutting\UserControlPanel.CrossCutting.csproj" />
     <ProjectReference Include="..\UserControlPanel.Data\UserControlPanel.Data.csproj" />
   </ItemGroup>
 

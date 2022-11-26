@@ -30,7 +30,7 @@ namespace UserControlPanel.Application.Query.UserAdress
             catch (Exception)
             {
 
-                throw new Exception("Ocorreu um erro ao buscar o Enderaço, contate um administrador do sistema!");
+                throw new Exception("Ocorreu um erro ao buscar o Endereço, contate um administrador do sistema!");
             }
         }
     }

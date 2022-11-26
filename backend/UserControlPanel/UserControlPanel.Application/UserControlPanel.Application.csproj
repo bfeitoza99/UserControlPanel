@@ -16,6 +16,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\UserControlPanel.CrossCutting\UserControlPanel.CrossCutting.csproj" />
     <ProjectReference Include="..\UserControlPanel.Domain\UserControlPanel.Domain.csproj" />
   </ItemGroup>
 

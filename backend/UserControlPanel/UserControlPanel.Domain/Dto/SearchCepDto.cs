@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -13,31 +14,34 @@ namespace UserControlPanel.Domain.Dto
         {
 
         }
-        [JsonPropertyName("")]
+        [JsonProperty("cep")]
         public string Cep { get; set; }
 
-        [JsonPropertyName("")]
+        [JsonProperty("logradouro")]
         public string Street { get; set; }
 
-        [JsonPropertyName("")]
+        [JsonProperty("complemento")]
+        public string Complement { get; set; }
+
+        [JsonProperty("bairro")]
         public string Neighbourhood { get; set; }
 
-        [JsonPropertyName("")]
+        [JsonProperty("localidade")]
         public string City { get; set; }
 
-        [JsonPropertyName("")]
+        [JsonProperty("uf")]
         public string State { get; set; }
 
-        [JsonPropertyName("")]
+        [JsonProperty("ibge")]
         public string Ibge { get; set; }
 
-        [JsonPropertyName("")]
+        [JsonProperty("gia")]
         public string Gia { get; set; }
 
-        [JsonPropertyName("")]
+        [JsonProperty("ddd")]
         public int Ddd { get; set; }
 
-        [JsonPropertyName("")]
+        [JsonProperty("siafi")]
         public string Siafi { get; set; }
     }
 }
