@@ -10,7 +10,7 @@ using UserControlPanel.Domain.Dto;
 using UserControlPanel.Domain.HttpClientInstance;
 using UserControlPanel.Domain.Interfaces.Service;
 
-namespace UserControlPanel.Application.Integration
+namespace UserControlPanel.Application.Service
 {
     [Injectable(typeof(ISearchCepIntegrationService))]
     public class SearchCepIntegrationService : ISearchCepIntegrationService

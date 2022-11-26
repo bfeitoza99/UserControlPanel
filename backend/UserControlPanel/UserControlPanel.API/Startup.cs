@@ -55,7 +55,9 @@ namespace UserControlPanel.API
 
             services.AddEndpointsApiExplorer();
 
-            services.AddControllers();            
+            services.AddControllers();           
+
+            services.AddMemoryCache();
         }
 
 

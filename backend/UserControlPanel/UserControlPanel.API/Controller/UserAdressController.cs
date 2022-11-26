@@ -13,6 +13,7 @@ namespace UserControlPanel.API.Controller
     public class UserAdressController : ControllerBase
     {
         [HttpGet("{cep}")]
+        [ProducesResponseType(typeof(UserAdressQueryResponse), StatusCodes.Status200OK)]
         public async Task<IActionResult> Get([FromServices] IMediator mediator,
                                                     [FromServices] ILogger<UserAdressController> _logger,
                                                     string cep)

@@ -16,6 +16,7 @@ namespace UserControlPanel.API.Controller
 
 
         [HttpPost]
+        [ProducesResponseType(typeof(UserCommandResponse), StatusCodes.Status200OK)]
         public async Task<IActionResult> Get([FromServices] IMediator mediator,
                                                     [FromServices] ILogger<UserAdressController> _logger,
                                                     UserCommandRequest command)

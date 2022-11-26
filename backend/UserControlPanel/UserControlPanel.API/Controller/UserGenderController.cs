@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System;
 using UserControlPanel.Application.Query.UserAdress;
 using UserControlPanel.Application.Query.UserGender;
+using UserControlPanel.Application.Command.User;
 
 namespace UserControlPanel.API.Controller
 {
@@ -16,6 +17,8 @@ namespace UserControlPanel.API.Controller
         
 
         [HttpGet("GetAll")]
+        [ProducesResponseType(typeof(UserGenderQueryRequest), StatusCodes.Status200OK)]
+
         public async Task<IActionResult> Get([FromServices] IMediator mediator,
                                                     [FromServices] ILogger<UserGenderController> _logger)
         {
