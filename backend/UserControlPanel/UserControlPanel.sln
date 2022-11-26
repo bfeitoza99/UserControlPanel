@@ -15,7 +15,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "4- Infra", "4- Infra", "{D5
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "5- UnitTests", "5- UnitTests", "{73B85CE9-2EC9-4595-A73D-85049A18A422}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "API", "UserControlPanel.API\API.csproj", "{A67F48DA-FE2E-47C9-96BD-4E38FA79A8BD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UserControlPanel.API", "UserControlPanel.API\UserControlPanel.API.csproj", "{A67F48DA-FE2E-47C9-96BD-4E38FA79A8BD}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UserControlPanel.Application", "UserControlPanel.Application\UserControlPanel.Application.csproj", "{329F43E2-1DF9-450E-9245-312DA3A938D8}"
 EndProject

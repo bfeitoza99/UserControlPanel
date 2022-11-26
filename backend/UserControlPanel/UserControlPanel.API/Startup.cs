@@ -1,8 +1,11 @@
 ﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Options;
 using Microsoft.OpenApi.Models;
+using UserControlPanel.Data;
 
 namespace UserControlPanel.API
 {
@@ -26,7 +29,15 @@ namespace UserControlPanel.API
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "UserControlPanel", Version = "v1", });
-            });
+            });            
+
+            services.AddDbContext<UserControlPanelContext>(options =>
+            {
+                options.UseSqlServer(Configuration.GetConnectionString("UserControlPanelDBConnection"), x =>
+                {
+                    x.MigrationsAssembly("UserControlPanel.Data");
+                });
+            });            
 
             services.AddEndpointsApiExplorer();
 
@@ -65,6 +76,12 @@ namespace UserControlPanel.API
             });
 
             app.UseSwagger(x => x.SerializeAsV2 = true);
+
+            using (var serviceScope = app.ApplicationServices.GetService<IServiceScopeFactory>().CreateScope())
+            {
+                var context = serviceScope.ServiceProvider.GetRequiredService<UserControlPanelContext>();
+                context.Database.Migrate();
+            }
 
         }
     }

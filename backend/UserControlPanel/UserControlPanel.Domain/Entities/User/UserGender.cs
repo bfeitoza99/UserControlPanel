@@ -9,5 +9,6 @@ namespace UserControlPanel.Domain.Entities.User
     public class UserGender : BaseEntity
     {
         public string Description { get; set; }
+        public string Initials { get; set; }
     }
 }
