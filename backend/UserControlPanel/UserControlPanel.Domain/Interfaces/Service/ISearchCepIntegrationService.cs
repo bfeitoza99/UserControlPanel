@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using UserControlPanel.Domain.Dto;
 
-namespace UserControlPanel.Domain.Interfaces
+namespace UserControlPanel.Domain.Interfaces.Service
 {
     public interface ISearchCepIntegrationService
     {

@@ -1,4 +1,11 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using MediatR;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
+using System.Threading.Tasks;
+using System;
+using UserControlPanel.Application.Query.UserAdress;
+using UserControlPanel.Application.Query.UserGender;
 
 namespace UserControlPanel.API.Controller
 {
@@ -6,10 +13,24 @@ namespace UserControlPanel.API.Controller
     [ApiController]
     public class UserGenderController :  ControllerBase
     {
-        [HttpGet]
-        public IActionResult Index()
+        
+
+        [HttpGet("GetAll")]
+        public async Task<IActionResult> Get([FromServices] IMediator mediator,
+                                                    [FromServices] ILogger<UserGenderController> _logger)
         {
-            return Ok();
+            try
+            {
+                _logger.LogInformation($"Get all genders");
+                var command = new UserGenderQueryRequest();                
+                var result = await mediator.Send(command);
+                return Ok(result);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogInformation(ex.Message);
+                return BadRequest(StatusCodes.Status400BadRequest);
+            }
         }
     }
 }

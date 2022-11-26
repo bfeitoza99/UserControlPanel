@@ -12,7 +12,7 @@ namespace UserControlPanel.API.Controller
     [ApiController]
     public class UserAdressController : ControllerBase
     {
-        [HttpGet]
+        [HttpGet("{cep}")]
         public async Task<IActionResult> Get([FromServices] IMediator mediator,
                                                     [FromServices] ILogger<UserAdressController> _logger,
                                                     string cep)

@@ -5,7 +5,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using UserControlPanel.Application.Query.UserAdress;
+using UserControlPanel.Application.Query.UserGender;
 using UserControlPanel.Domain.Dto;
+using UserControlPanel.Domain.Entities.User;
 
 namespace UserControlPanel.Application.AutoMapper
 {
@@ -16,7 +18,10 @@ namespace UserControlPanel.Application.AutoMapper
 
             #region DtoToHandleResponse
             CreateMap<SearchCepDto, UserAdressQueryResponse>();
+            #endregion
 
+            #region EntityToCommand 
+            CreateMap<UserGender, UserGenderResponse>();
             #endregion
         }
     }

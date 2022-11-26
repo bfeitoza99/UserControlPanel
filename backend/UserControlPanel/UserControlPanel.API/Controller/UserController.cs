@@ -9,7 +9,7 @@ namespace UserControlPanel.API.Controller
     {
         
 
-        [HttpGet]
+        [HttpPost]
         public IActionResult Index()
         {
             return Ok();

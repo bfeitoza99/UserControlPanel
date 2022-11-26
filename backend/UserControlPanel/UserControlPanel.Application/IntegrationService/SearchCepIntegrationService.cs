@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 using UserControlPanel.CrossCutting.DependencyInjection;
 using UserControlPanel.Domain.Dto;
 using UserControlPanel.Domain.HttpClientInstance;
-using UserControlPanel.Domain.Interfaces;
+using UserControlPanel.Domain.Interfaces.Service;
 
 namespace UserControlPanel.Application.Integration
 {

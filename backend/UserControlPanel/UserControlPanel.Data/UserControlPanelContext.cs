@@ -37,40 +37,32 @@ namespace UserControlPanel.Data
                   Id = 1,
                   CreatedDate = DateTime.Now,
                   DeletedDate = null,
-                  Description = "",
-                  Initials = ""
+                  Description = "Masculino",
+                  Initials = "M"
               },
               new UserGender
               {
                   Id = 2,
                   CreatedDate = DateTime.Now,
                   DeletedDate = null,
-                  Description = "",
-                  Initials = ""
+                  Description = "Feminino",
+                  Initials = "F"
               },
               new UserGender
               {
                   Id = 3,
                   CreatedDate = DateTime.Now,
                   DeletedDate = null,
-                  Description = "",
-                  Initials = ""
+                  Description = "Outro",
+                  Initials = "OT"
               },
               new UserGender
               {
                   Id = 4,
                   CreatedDate = DateTime.Now,
                   DeletedDate = null,
-                  Description = "",
-                  Initials = ""
-              },
-              new UserGender
-              {
-                  Id = 5,
-                  CreatedDate = DateTime.Now,
-                  DeletedDate = null,
-                  Description = "",
-                  Initials = ""
+                  Description = "Prefiro não dizer",
+                  Initials = "PND"
               });
 
             base.OnModelCreating(modelBuilder);
