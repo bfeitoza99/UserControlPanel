@@ -19,15 +19,24 @@ namespace UserControlPanel.Application.Service
 
         public async Task<SearchCepDto> GetAdress(string cep)
         {
-
-            HttpResponseMessage response = new HttpResponseMessage();
-
-            using (var client = HttpClientInstance.GetHttpClientInstance())
+            try
             {
-                response = await client.GetAsync($"https://viacep.com.br/ws/{cep}/json/");
+                HttpResponseMessage response = new HttpResponseMessage();
+
+                using (var client = HttpClientInstance.GetHttpClientInstance())
+                {
+                    response = await client.GetAsync($"https://viacep.com.br/ws/{cep}/json/");
+                }
+
+                return JsonConvert.DeserializeObject<SearchCepDto>(response.Content.ReadAsStringAsync().Result);
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
             }
 
-            return JsonConvert.DeserializeObject<SearchCepDto>(response.Content.ReadAsStringAsync().Result);
+            
         }        
     }
 }

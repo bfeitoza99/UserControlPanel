@@ -19,6 +19,9 @@
               <div class="red_color" *ngIf="userForm.controls['cpf']?.errors?.['required'] && isSubmited">
                 Campo CPF é obrigatório
               </div>
+              <div class="red_color" *ngIf="userForm.controls['cpf']?.errors?.['minlength'] && isSubmited">
+                Campo CPF deve conter no mínimo 11 numeros 
+              </div>
         </div>
 
         <div class="form-group col-2">
@@ -31,7 +34,7 @@
 
         <div class="form-group col-2">
           <label for="number">Número</label>
-          <input  formControlName="number" mask="(000) 00000-0000" class="form-control" id="number"  placeholder="Digite seu Número">
+          <input  formControlName="number" mask="(00) 00000-0000" class="form-control" id="number"  placeholder="(dd) xxxxx-xxxx">
             <div class="red_color" *ngIf="userForm.controls['number']?.errors?.['required'] && isSubmited">
               Campo Número é obrigatório
             </div>
@@ -58,8 +61,8 @@
 
     <div class="row row_skiping">
       <div class="form-group col-3">
-        <label for="exampleInputEmail1">CEP</label>
-        <input type="email" formControlName="cep" class="form-control" id="cep" aria-describedby="emailHelp" placeholder="Digite seu CEP">
+        <label for="cep">CEP</label>
+        <input  formControlName="cep" mask="00000-000" class="form-control" id="cep" aria-describedby="emailHelp" placeholder="Digite seu CEP">
           <div class="red_color" *ngIf="userForm.controls['cep']?.errors?.['required'] && isSubmited">
             Campo CEP é obrigatório
           </div>

@@ -44,7 +44,7 @@ namespace UserControlPanel.Application.Query.UserAdress
             catch (Exception ex)
             {
 
-                throw new Exception("Ocorreu um erro ao buscar o Endereço, contate um administrador do sistema!");
+                throw new Exception("Endereço não encontrado, verifique CEP digitado!");
             }
         }
     }
