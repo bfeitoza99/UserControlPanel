@@ -43,9 +43,17 @@ namespace UserControlPanel.API
             var applicationAssembly = AppDomain.CurrentDomain.Load("UserControlPanel.Application");
             services.AddMediatR(applicationAssembly);
 
+            //services.AddDbContext<UserControlPanelContext>(options =>
+            //{
+            //    options.UseSqlServer("Initial Catalog=UserControlPanel; Data Source=sqldata; Persist Security Info=False;User ID=sa;Password=1234Teste@;Encrypt=False;", x =>
+            //    {
+            //        x.MigrationsAssembly("UserControlPanel.Data");
+            //    });
+            //});
+
             services.AddDbContext<UserControlPanelContext>(options =>
             {
-                options.UseSqlServer("Initial Catalog=UserControlPanel; Data Source=sqldata; Persist Security Info=False;User ID=sa;Password=1234Teste@;Encrypt=False;", x =>
+                options.UseSqlServer("Initial Catalog=UserControlPanel; Data Source=localhost,1450; Persist Security Info=False;User ID=sa;Password=1234Teste@;Encrypt=False;", x =>
                 {
                     x.MigrationsAssembly("UserControlPanel.Data");
                 });

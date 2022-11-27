@@ -9,8 +9,10 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgxMaskModule , IConfig } from 'ngx-mask';
 import { ToastrModule } from 'ngx-toastr';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { BASE_PATH, UserAdressService } from './services/swagger-generated';
-import { HttpClientModule } from '@angular/common/http';
+import { BASE_PATH, UserAdressService, UserGenderService, UserService } from './services/swagger-generated';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { CustomHttpInterceptor } from './services/http-interceptor.service';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 const maskConfig: Partial<IConfig> = {
   validation: false,
@@ -29,10 +31,20 @@ const maskConfig: Partial<IConfig> = {
     FormsModule ,ReactiveFormsModule,
     NgxMaskModule.forRoot(maskConfig),
     ToastrModule.forRoot(),
-    HttpClientModule
+    HttpClientModule,
+    MatProgressSpinnerModule 
 
   ],
-  providers: [UserAdressService,{ provide: BASE_PATH, useValue: 'http://localhost:5002' }],
+  providers: [
+    UserAdressService,
+    UserGenderService,
+    UserService,
+    { provide: BASE_PATH, useValue: 'http://localhost:5002' },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: CustomHttpInterceptor,
+      multi: true
+    }],
   bootstrap: [UserCreateComponent]
 })
 export class UserModule { }

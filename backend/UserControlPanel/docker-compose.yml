@@ -1,7 +1,7 @@
 version: "3.9"
 services:
   userpanel:
-    image: "userpanel:v1.0.0"
+    image: "userpanel_back"
     build:
       context: .
     ports:
@@ -16,3 +16,8 @@ services:
      - ACCEPT_EULA=Y
     ports:
       - "1450:1433"
+
+  userpanel_web:
+    image: userpanel_front
+    ports:
+      - "8080:80"    

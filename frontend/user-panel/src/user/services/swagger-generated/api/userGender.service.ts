@@ -21,6 +21,7 @@ import { UserGenderQueryRequest } from '../model/userGenderQueryRequest';
 
 import { BASE_PATH, COLLECTION_FORMATS }                     from '../variables';
 import { Configuration }                                     from '../configuration';
+import { UserGenderQueryResponse } from '../model/userGenderQueryResponse';
 
 
 @Injectable()
@@ -61,9 +62,9 @@ export class UserGenderService {
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public apiUserGenderGetAllGet(observe?: 'body', reportProgress?: boolean): Observable<UserGenderQueryRequest>;
-    public apiUserGenderGetAllGet(observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<UserGenderQueryRequest>>;
-    public apiUserGenderGetAllGet(observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<UserGenderQueryRequest>>;
+    public apiUserGenderGetAllGet(observe?: 'body', reportProgress?: boolean): Observable<UserGenderQueryResponse>;
+    public apiUserGenderGetAllGet(observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<UserGenderQueryResponse>>;
+    public apiUserGenderGetAllGet(observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<UserGenderQueryResponse>>;
     public apiUserGenderGetAllGet(observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
 
         let headers = this.defaultHeaders;
@@ -83,7 +84,7 @@ export class UserGenderService {
         const consumes: string[] = [
         ];
 
-        return this.httpClient.request<UserGenderQueryRequest>('get',`${this.basePath}/api/UserGender/GetAll`,
+        return this.httpClient.request<UserGenderQueryResponse>('get',`${this.basePath}/api/UserGender/GetAll`,
             {
                 withCredentials: this.configuration.withCredentials,
                 headers: headers,

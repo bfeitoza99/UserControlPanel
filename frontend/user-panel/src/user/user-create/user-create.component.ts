@@ -2,6 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
 import {FormBuilder, FormControl, FormGroup, Validators, ValidatorFn,AbstractControl,ValidationErrors} from '@angular/forms';
 import { UserAddressFacadeService } from '../services/facade/user-adress.service';
+import { UserGenderFacadeService } from '../services/facade/user-gender.service';
+import { UserFacadeService } from '../services/facade/user.service';
+import { UserAdressQueryResponse } from '../services/swagger-generated';
+import { UserGenderQueryResponse, UserGenderReponse } from '../services/swagger-generated/model/userGenderQueryResponse';
+import { SpinnerService } from '../services/spinner.service';
 
 @Component({
   selector: 'app-user-create',
@@ -12,21 +17,24 @@ export class UserCreateComponent implements OnInit {
 
 public userForm: FormGroup;
 public isSubmited: boolean = false;
+public genders: UserGenderReponse[] = [];
+public address: UserAdressQueryResponse;
 
 
 constructor(private fb: FormBuilder,
   private toastr: ToastrService,
-  private userAddressService:UserAddressFacadeService ) { 
+  private userAddressService:UserAddressFacadeService,  
+    private userGenderService:UserGenderFacadeService,
+    private userService:UserFacadeService,
+    public spinnerService: SpinnerService) { 
 
 }
 
   async ngOnInit() {
     this.createForm();
     this.disableAdressFields();
-
-    let teste = await this.userAddressService.getAddressAsync("11370500");
-
-    console.log(teste)
+    this.genders = await (await this.userGenderService.getGenderAsync()).userGenders;  
+    
   }
 
   private createForm() {
@@ -47,11 +55,13 @@ constructor(private fb: FormBuilder,
       birthDate: new FormControl("", [
         Validators.required
       ]),
-      gender: new FormControl("", [
-        Validators.required
+      gender: new FormControl("default", [
+        Validators.required,
+        this.genderEqualsDefault()
       ]),
       cep: new FormControl("", [
-        Validators.required
+        Validators.required,
+        Validators.minLength(8)
       ]),
       city: new FormControl("", []),
       street: new FormControl("", []),
@@ -63,11 +73,35 @@ constructor(private fb: FormBuilder,
     this.userForm.get('neighbourhood')?.disable();
     this.userForm.get('street')?.disable();
     this.userForm.get('city')?.disable();
+  }
+  
+  disableAllFields(){
+    this.userForm.get('name')?.disable();
+    this.userForm.get('cpf')?.disable();
+    this.userForm.get('email')?.disable();
+    this.userForm.get('number')?.disable();
+    this.userForm.get('birthDate')?.disable();
+    this.userForm.get('gender')?.disable();
+    this.userForm.get('cep')?.disable();
+    
+    this.disableAdressFields();
   } 
+
+  enableAllField(){
+    this.userForm.get('name')?.enable();
+    this.userForm.get('cpf')?.enable();
+    this.userForm.get('email')?.enable();
+    this.userForm.get('number')?.enable();
+    this.userForm.get('birthDate')?.enable();
+    this.userForm.get('gender')?.enable();
+    this.userForm.get('cep')?.enable();
+    this.userForm.get('neighbourhood')?.enable();
+    this.userForm.get('street')?.enable();
+    this.userForm.get('city')?.enable();
+  }
 
   validateFieldsIsValid(){
     const cpf = this.userForm.get('cpf')   
-    console.log(cpf?.value)
     if(cpf?.value != "" && cpf?.valid){
       if(!this.validateCPF(cpf.value))
          this.errorToast("CPF");
@@ -102,6 +136,12 @@ constructor(private fb: FormBuilder,
     return true;
   }
    
+   genderEqualsDefault(): ValidatorFn {
+    return (control: AbstractControl): ValidationErrors | null => {
+      const forbidden = control.value == "default"
+      return forbidden ? {defaultValue: {value: control.value}} : null;
+    };
+  }
 
 
   errorToast(field: string){
@@ -112,6 +152,32 @@ constructor(private fb: FormBuilder,
     this.validateFieldsIsValid();
     this.isSubmited = true;
   }
+
+  async validateCep(){
+    let cep = this.userForm.controls['cep'];      
+    if(cep.valid){
+      this.address = await this.userAddressService.getAddressAsync(cep.value);
+        if(this.address.cep == null){
+          this.fillEmptyAddress();
+          this.errorToast("CEP");
+          return;
+        }
+      this.fillAddress();
+    }
+  }
+
+  fillAddress() {
+    this.userForm.controls['city'].setValue(this.address.city)
+    this.userForm.controls['street'].setValue(this.address.street)
+    this.userForm.controls['neighbourhood'].setValue(this.address.neighbourhood)
+  }
+
+  fillEmptyAddress() {
+    this.userForm.controls['city'].setValue("")
+    this.userForm.controls['street'].setValue("")
+    this.userForm.controls['neighbourhood'].setValue("")
+  }
+
   
 
 }

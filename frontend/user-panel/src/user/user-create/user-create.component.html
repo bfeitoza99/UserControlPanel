@@ -2,7 +2,7 @@
 <h1 class=""> Painel de Controle de Usuário</h1>
 </div>
 
-<form [formGroup]="userForm">
+<form [formGroup]="userForm" *ngIf="genders.length > 0">
 
     <div class="row row_skiping">
         <div class="form-group col-3">
@@ -20,7 +20,7 @@
                 Campo CPF é obrigatório
               </div>
               <div class="red_color" *ngIf="userForm.controls['cpf']?.errors?.['minlength'] && isSubmited">
-                Campo CPF deve conter no mínimo 11 numeros 
+                Campo CPF deve conter 11 números.
               </div>
         </div>
 
@@ -50,11 +50,14 @@
       <div class="form-group col-1">
         <label for="gender">Gênero</label>
         <select class="form-control" id="country" formControlName="gender" >
-          <option value="default">teste</option>
-          <!-- <option *ngFor="let c of countries" [ngValue]="c">{{c.name}}</option> -->
+          <option value="default">Selecione</option>
+         <option *ngFor="let c of genders" [ngValue]="c.id">{{c.description}}</option> -->
        </select>
           <div class="red_color" *ngIf="userForm.controls['gender']?.errors?.['required'] && isSubmited">
             Campo Gênero é obrigatório
+          </div>
+          <div class="red_color" *ngIf="userForm.controls['gender']?.errors?.['defaultValue'] && isSubmited">
+            Escolha um Gênero
           </div>
       </div>
     </div>
@@ -62,9 +65,12 @@
     <div class="row row_skiping">
       <div class="form-group col-3">
         <label for="cep">CEP</label>
-        <input  formControlName="cep" mask="00000-000" class="form-control" id="cep" aria-describedby="emailHelp" placeholder="Digite seu CEP">
+        <input  formControlName="cep" mask="00000-000" class="form-control" id="cep" aria-describedby="emailHelp" placeholder="Digite seu CEP" (change)="validateCep()">
           <div class="red_color" *ngIf="userForm.controls['cep']?.errors?.['required'] && isSubmited">
             Campo CEP é obrigatório
+          </div>
+          <div class="red_color" *ngIf="userForm.controls['cep']?.errors?.['minlength'] && isSubmited">
+            Campo CEP deve conter 8 números.
           </div>
       </div>
       <div class="form-group col-3">
@@ -81,7 +87,9 @@
       </div>
     </div>
 
-
+    <div class="spinner-border spinner_container" *ngIf="spinnerService.visibility | async" role="status">
+      <span class="sr-only"></span>
+    </div>
     
     <button type="submit" class="btn btn-primary" (click)="submit()">Submit</button>
   </form>

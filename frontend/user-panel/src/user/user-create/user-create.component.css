@@ -5,3 +5,14 @@
 .row_skiping{
     padding: 1em;
 }
+
+.spinner_container {   
+    left: 50%;
+    position: absolute;
+    top: 30%;   
+    stroke: brown !important;
+}
+
+.mat-progress-spinner circle, .mat-spinner circle {
+    stroke: #3fb53f;
+    }
