@@ -1,5 +1,5 @@
 import { Injectable } from "@angular/core";
-import { UserAdressQueryResponse,   UserService } from "../swagger-generated";
+import { UserAdressQueryResponse,   UserCommandRequest,   UserCommandResponse,   UserService } from "../swagger-generated";
 
 @Injectable({
     providedIn: 'root'
@@ -7,6 +7,20 @@ import { UserAdressQueryResponse,   UserService } from "../swagger-generated";
 export class UserFacadeService {
     constructor(private userService: UserService){}
 
+
+    public  createAsync(user: UserCommandRequest): Promise<UserCommandResponse> {
+        return new Promise((resolve, reject) => {
+          const successCallback = async (data: UserCommandResponse) => {
+            resolve(data);
+          };
+          const errorCallback = error => {
+            reject(error);
+          };
+    
+          this.userService.apiUserPost(user)
+            .subscribe(successCallback, errorCallback);
+        });
+      } 
 
     // public  getGenderAsync(): Promise<UserAdressQueryResponse>{
     //     return new Promise((resolve, reject) => {

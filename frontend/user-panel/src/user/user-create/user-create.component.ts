@@ -4,7 +4,7 @@ import {FormBuilder, FormControl, FormGroup, Validators, ValidatorFn,AbstractCon
 import { UserAddressFacadeService } from '../services/facade/user-adress.service';
 import { UserGenderFacadeService } from '../services/facade/user-gender.service';
 import { UserFacadeService } from '../services/facade/user.service';
-import { UserAdressQueryResponse } from '../services/swagger-generated';
+import { UserAdressQueryResponse, UserCommandRequest } from '../services/swagger-generated';
 import { UserGenderQueryResponse, UserGenderReponse } from '../services/swagger-generated/model/userGenderQueryResponse';
 import { SpinnerService } from '../services/spinner.service';
 
@@ -16,7 +16,8 @@ import { SpinnerService } from '../services/spinner.service';
 export class UserCreateComponent implements OnInit {
 
 public userForm: FormGroup;
-public isSubmited: boolean = false;
+public isSubmiting: boolean = false;
+public isValid: boolean = true;
 public genders: UserGenderReponse[] = [];
 public address: UserAdressQueryResponse;
 
@@ -95,23 +96,24 @@ constructor(private fb: FormBuilder,
     this.userForm.get('birthDate')?.enable();
     this.userForm.get('gender')?.enable();
     this.userForm.get('cep')?.enable();
-    this.userForm.get('neighbourhood')?.enable();
-    this.userForm.get('street')?.enable();
-    this.userForm.get('city')?.enable();
   }
 
   validateFieldsIsValid(){
     const cpf = this.userForm.get('cpf')   
     if(cpf?.value != "" && cpf?.valid){
-      if(!this.validateCPF(cpf.value))
-         this.errorToast("CPF");
+      if(!this.validateCPF(cpf.value)) {
+        this.isValid = false;
+        this.errorToast("CPF");
+      }
     }
 
     const email = this.userForm.get('email')?.value
     if(email != ""){
       let regex = new RegExp(/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/);
-      if(!regex.test(email))
+      if(!regex.test(email)){
+        this.isValid = false;
           this.errorToast("Email");
+      }
     }
   }
 
@@ -142,15 +144,46 @@ constructor(private fb: FormBuilder,
       return forbidden ? {defaultValue: {value: control.value}} : null;
     };
   }
-
-
   errorToast(field: string){
     this.toastr.error(`Campo ${field} Inválido`);
   }
 
-  submit(){
+  async submit(){
+    this.isValid = true;
+    this.isSubmiting = true;
     this.validateFieldsIsValid();
-    this.isSubmited = true;
+    if(this.userForm.valid && this.isValid){
+      this.disableAllFields();
+      let response = await this.userService.createAsync(this.getFields())
+      if(!response.isSucess) {
+        this.toastr.error(response.message);
+      }
+      this.toastr.success(response.message);
+      this.enableAllField();
+      this.fillEmptyAllFields();
+      this.isSubmiting =false;
+    }
+  }
+
+  getFields(): UserCommandRequest {
+    return{
+      birthDate: this.userForm.get('birthDate')?.value,
+      cep: this.address.cep,
+      city: this.address.city,
+      complement: this.address.complement,
+      cpf: this.userForm.get('cpf')?.value,
+      ddd: this.address.ddd,
+      email: this.userForm.get('email')?.value,
+      gia: this.address.gia,
+      ibge: this.address.ibge,
+      name: this.address.cep,
+      neighbourhood: this.address.neighbourhood,
+      number: this.userForm.get('number')?.value,
+      siafi: this.address.siafi,
+      state: this.address.state,
+      street: this.address.street,
+      userGenderId: this.userForm.get('gender')?.value
+    };
   }
 
   async validateCep(){
@@ -160,6 +193,7 @@ constructor(private fb: FormBuilder,
         if(this.address.cep == null){
           this.fillEmptyAddress();
           this.errorToast("CEP");
+          this.isValid = false;
           return;
         }
       this.fillAddress();
@@ -170,6 +204,18 @@ constructor(private fb: FormBuilder,
     this.userForm.controls['city'].setValue(this.address.city)
     this.userForm.controls['street'].setValue(this.address.street)
     this.userForm.controls['neighbourhood'].setValue(this.address.neighbourhood)
+  }
+
+  fillEmptyAllFields(){
+    this.userForm.controls['name'].setValue("")
+    this.userForm.controls['cpf'].setValue("")
+    this.userForm.controls['email'].setValue("")
+    this.userForm.controls['number'].setValue("")
+    this.userForm.controls['birthDate'].setValue("")
+    this.userForm.controls['gender'].setValue("default")
+    this.userForm.controls['cep'].setValue("")
+
+    this.fillEmptyAddress();
   }
 
   fillEmptyAddress() {

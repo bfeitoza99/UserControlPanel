@@ -8,7 +8,7 @@
         <div class="form-group col-3">
         <label for="name">Nome</label>
         <input  formControlName="name" class="form-control" id="name"  placeholder="Digite seu nome">
-          <div class="red_color" *ngIf="userForm.controls['name']?.errors?.['required'] && isSubmited">
+          <div class="red_color" *ngIf="userForm.controls['name']?.errors?.['required'] && isSubmiting">
             Campo Nome é obrigatório
           </div>
         </div>
@@ -16,10 +16,10 @@
         <div class="form-group col-2">
             <label for="cpf">CPF</label>
             <input  formControlName="cpf"  mask="000.000.000-00" class="form-control" id="cpf" ui-mask="999.999.999-99" placeholder="Digite seu CPF">
-              <div class="red_color" *ngIf="userForm.controls['cpf']?.errors?.['required'] && isSubmited">
+              <div class="red_color" *ngIf="userForm.controls['cpf']?.errors?.['required'] && isSubmiting">
                 Campo CPF é obrigatório
               </div>
-              <div class="red_color" *ngIf="userForm.controls['cpf']?.errors?.['minlength'] && isSubmited">
+              <div class="red_color" *ngIf="userForm.controls['cpf']?.errors?.['minlength'] && isSubmiting">
                 Campo CPF deve conter 11 números.
               </div>
         </div>
@@ -27,7 +27,7 @@
         <div class="form-group col-2">
             <label for="email">Email</label>
             <input  formControlName="email" class="form-control" id="email"  placeholder="Digite seu email">
-              <div class="red_color" *ngIf="userForm.controls['email']?.errors?.['required'] && isSubmited">
+              <div class="red_color" *ngIf="userForm.controls['email']?.errors?.['required'] && isSubmiting">
                 Campo Email é obrigatório
               </div>
         </div>
@@ -35,7 +35,7 @@
         <div class="form-group col-2">
           <label for="number">Número</label>
           <input  formControlName="number" mask="(00) 00000-0000" class="form-control" id="number"  placeholder="(dd) xxxxx-xxxx">
-            <div class="red_color" *ngIf="userForm.controls['number']?.errors?.['required'] && isSubmited">
+            <div class="red_color" *ngIf="userForm.controls['number']?.errors?.['required'] && isSubmiting">
               Campo Número é obrigatório
             </div>
         </div>
@@ -43,7 +43,7 @@
       <div class="form-group col-2">
         <label for="birthDate">Data Nascimento</label>
         <input  formControlName="birthDate" type="date" class="form-control" id="birthDate"  >
-          <div class="red_color" *ngIf="userForm.controls['birthDate']?.errors?.['required'] && isSubmited">
+          <div class="red_color" *ngIf="userForm.controls['birthDate']?.errors?.['required'] && isSubmiting">
             Campo Data Nascimento é obrigatório
           </div>
       </div>
@@ -53,10 +53,10 @@
           <option value="default">Selecione</option>
          <option *ngFor="let c of genders" [ngValue]="c.id">{{c.description}}</option> -->
        </select>
-          <div class="red_color" *ngIf="userForm.controls['gender']?.errors?.['required'] && isSubmited">
+          <div class="red_color" *ngIf="userForm.controls['gender']?.errors?.['required'] && isSubmiting">
             Campo Gênero é obrigatório
           </div>
-          <div class="red_color" *ngIf="userForm.controls['gender']?.errors?.['defaultValue'] && isSubmited">
+          <div class="red_color" *ngIf="userForm.controls['gender']?.errors?.['defaultValue'] && isSubmiting">
             Escolha um Gênero
           </div>
       </div>
@@ -66,10 +66,10 @@
       <div class="form-group col-3">
         <label for="cep">CEP</label>
         <input  formControlName="cep" mask="00000-000" class="form-control" id="cep" aria-describedby="emailHelp" placeholder="Digite seu CEP" (change)="validateCep()">
-          <div class="red_color" *ngIf="userForm.controls['cep']?.errors?.['required'] && isSubmited">
+          <div class="red_color" *ngIf="userForm.controls['cep']?.errors?.['required'] && isSubmiting">
             Campo CEP é obrigatório
           </div>
-          <div class="red_color" *ngIf="userForm.controls['cep']?.errors?.['minlength'] && isSubmited">
+          <div class="red_color" *ngIf="userForm.controls['cep']?.errors?.['minlength'] && isSubmiting">
             Campo CEP deve conter 8 números.
           </div>
       </div>
@@ -90,6 +90,11 @@
     <div class="spinner-border spinner_container" *ngIf="spinnerService.visibility | async" role="status">
       <span class="sr-only"></span>
     </div>
+
+    <div class="row row_skiping">
+      <div class="col-1">
+        <button type="submit" class="btn btn-primary" (click)="submit()">Submit</button>
+      </div>
+    </div>
     
-    <button type="submit" class="btn btn-primary" (click)="submit()">Submit</button>
   </form>
