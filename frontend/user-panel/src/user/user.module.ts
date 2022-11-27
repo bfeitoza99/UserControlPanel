@@ -9,6 +9,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgxMaskModule , IConfig } from 'ngx-mask';
 import { ToastrModule } from 'ngx-toastr';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { BASE_PATH, UserAdressService } from './services/swagger-generated';
+import { HttpClientModule } from '@angular/common/http';
 
 const maskConfig: Partial<IConfig> = {
   validation: false,
@@ -27,9 +29,10 @@ const maskConfig: Partial<IConfig> = {
     FormsModule ,ReactiveFormsModule,
     NgxMaskModule.forRoot(maskConfig),
     ToastrModule.forRoot(),
+    HttpClientModule
 
   ],
-  providers: [],
+  providers: [UserAdressService,{ provide: BASE_PATH, useValue: 'http://localhost:5002' }],
   bootstrap: [UserCreateComponent]
 })
 export class UserModule { }

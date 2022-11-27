@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
 import {FormBuilder, FormControl, FormGroup, Validators, ValidatorFn,AbstractControl,ValidationErrors} from '@angular/forms';
+import { UserAddressFacadeService } from '../services/facade/user-adress.service';
 
 @Component({
   selector: 'app-user-create',
@@ -14,13 +15,18 @@ public isSubmited: boolean = false;
 
 
 constructor(private fb: FormBuilder,
-  private toastr: ToastrService) { 
+  private toastr: ToastrService,
+  private userAddressService:UserAddressFacadeService ) { 
 
 }
 
-  ngOnInit(): void {
+  async ngOnInit() {
     this.createForm();
     this.disableAdressFields();
+
+    let teste = await this.userAddressService.getAddressAsync("11370500");
+
+    console.log(teste)
   }
 
   private createForm() {
