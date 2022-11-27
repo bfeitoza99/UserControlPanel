@@ -1,0 +1,84 @@
+<div class="row align-items-center" >
+<h1 class=""> Painel de Controle de Usuário</h1>
+</div>
+
+<form [formGroup]="userForm">
+
+    <div class="row row_skiping">
+        <div class="form-group col-3">
+        <label for="name">Nome</label>
+        <input  formControlName="name" class="form-control" id="name"  placeholder="Digite seu nome">
+          <div class="red_color" *ngIf="userForm.controls['name']?.errors?.['required'] && isSubmited">
+            Campo Nome é obrigatório
+          </div>
+        </div>
+
+        <div class="form-group col-2">
+            <label for="cpf">CPF</label>
+            <input  formControlName="cpf"  mask="000.000.000-00" class="form-control" id="cpf" ui-mask="999.999.999-99" placeholder="Digite seu CPF">
+              <div class="red_color" *ngIf="userForm.controls['cpf']?.errors?.['required'] && isSubmited">
+                Campo CPF é obrigatório
+              </div>
+        </div>
+
+        <div class="form-group col-2">
+            <label for="email">Email</label>
+            <input  formControlName="email" class="form-control" id="email"  placeholder="Digite seu email">
+              <div class="red_color" *ngIf="userForm.controls['email']?.errors?.['required'] && isSubmited">
+                Campo Email é obrigatório
+              </div>
+        </div>
+
+        <div class="form-group col-2">
+          <label for="number">Número</label>
+          <input  formControlName="number" mask="(000) 00000-0000" class="form-control" id="number"  placeholder="Digite seu Número">
+            <div class="red_color" *ngIf="userForm.controls['number']?.errors?.['required'] && isSubmited">
+              Campo Número é obrigatório
+            </div>
+        </div>
+
+      <div class="form-group col-2">
+        <label for="birthDate">Data Nascimento</label>
+        <input  formControlName="birthDate" type="date" class="form-control" id="birthDate"  >
+          <div class="red_color" *ngIf="userForm.controls['birthDate']?.errors?.['required'] && isSubmited">
+            Campo Data Nascimento é obrigatório
+          </div>
+      </div>
+      <div class="form-group col-1">
+        <label for="gender">Gênero</label>
+        <select class="form-control" id="country" formControlName="gender" >
+          <option value="default">teste</option>
+          <!-- <option *ngFor="let c of countries" [ngValue]="c">{{c.name}}</option> -->
+       </select>
+          <div class="red_color" *ngIf="userForm.controls['gender']?.errors?.['required'] && isSubmited">
+            Campo Gênero é obrigatório
+          </div>
+      </div>
+    </div>
+
+    <div class="row row_skiping">
+      <div class="form-group col-3">
+        <label for="exampleInputEmail1">CEP</label>
+        <input type="email" formControlName="cep" class="form-control" id="cep" aria-describedby="emailHelp" placeholder="Digite seu CEP">
+          <div class="red_color" *ngIf="userForm.controls['cep']?.errors?.['required'] && isSubmited">
+            Campo CEP é obrigatório
+          </div>
+      </div>
+      <div class="form-group col-3">
+        <label for="city">Cidade</label>
+        <input  formControlName="city" class="form-control" id="city" placeholder="Cidade">
+      </div>
+      <div class="form-group col-3">
+        <label for="street">Rua</label>
+        <input formControlName="street" class="form-control" id="street" placeholder="Rua" >
+      </div>
+      <div class="form-group col-3">
+        <label for="neighbourhood">Bairro</label>
+        <input formControlName="neighbourhood" class="form-control" id="neighbourhood" placeholder="Bairro" >
+      </div>
+    </div>
+
+
+    
+    <button type="submit" class="btn btn-primary" (click)="submit()">Submit</button>
+  </form>
