@@ -1,0 +1,18 @@
+version: "3.9"
+services:
+  userpanel:
+    image: "userpanel:v1.0.0"
+    build:
+      context: .
+    ports:
+      - "5002:80"
+    depends_on:
+      - sqldata
+
+  sqldata:
+    image: mcr.microsoft.com/mssql/server:2019-CU14-ubuntu-20.04
+    environment:
+     - SA_PASSWORD=1234Teste@
+     - ACCEPT_EULA=Y
+    ports:
+      - "1450:1433"

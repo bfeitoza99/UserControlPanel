@@ -2,11 +2,16 @@
 
 FROM mcr.microsoft.com/dotnet/aspnet:6.0 AS base
 WORKDIR /app
+
 EXPOSE 5002
 
 FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build
 WORKDIR /src
 COPY ["UserControlPanel.API/UserControlPanel.API.csproj", "UserControlPanel.API/"]
+COPY ["UserControlPanel.Application/UserControlPanel.Application.csproj", "UserControlPanel.Application/"]
+COPY ["UserControlPanel.CrossCutting/UserControlPanel.CrossCutting.csproj", "UserControlPanel.CrossCutting/"]
+COPY ["UserControlPanel.Domain/UserControlPanel.Domain.csproj", "UserControlPanel.Domain/"]
+COPY ["UserControlPanel.Data/UserControlPanel.Data.csproj", "UserControlPanel.Data/"]
 RUN dotnet restore "UserControlPanel.API/UserControlPanel.API.csproj"
 COPY . .
 WORKDIR "/src/UserControlPanel.API"

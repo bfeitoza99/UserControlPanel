@@ -45,7 +45,7 @@ namespace UserControlPanel.API
 
             services.AddDbContext<UserControlPanelContext>(options =>
             {
-                options.UseSqlServer(Configuration.GetConnectionString("UserControlPanelDBConnection"), x =>
+                options.UseSqlServer("Initial Catalog=UserControlPanel; Data Source=sqldata; Persist Security Info=False;User ID=sa;Password=1234Teste@;Encrypt=False;", x =>
                 {
                     x.MigrationsAssembly("UserControlPanel.Data");
                 });

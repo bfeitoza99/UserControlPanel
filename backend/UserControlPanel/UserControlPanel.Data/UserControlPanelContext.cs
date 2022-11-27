@@ -23,7 +23,7 @@ namespace UserControlPanel.Data
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             base.OnConfiguring(optionsBuilder);
-            optionsBuilder.UseSqlServer("Initial Catalog=UserControlPanel; Data Source=localhost,1450; Persist Security Info=False;User ID=sa;Password=1234Teste@;Encrypt=False;", x =>
+            optionsBuilder.UseSqlServer("Initial Catalog=UserControlPanel; Data Source=sqldata; Persist Security Info=False;User ID=sa;Password=1234Teste@;Encrypt=False;", x =>
             {
                 x.MigrationsAssembly("UserControlPanel.Data");
             });
