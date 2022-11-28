@@ -31,6 +31,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UserControlPanel.CrossCutti
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UserControlPanel.Tests", "UserControlPanel.Tests\UserControlPanel.Tests.csproj", "{3EF8B220-51E3-4A11-AB9C-60C4FB9185DD}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UserControlPanel.Presentation", "UserControlPanel.Presentation\UserControlPanel.Presentation.csproj", "{CF69ABAC-65DB-4304-82E0-7643EA8E98F0}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -61,6 +63,10 @@ Global
 		{3EF8B220-51E3-4A11-AB9C-60C4FB9185DD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3EF8B220-51E3-4A11-AB9C-60C4FB9185DD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3EF8B220-51E3-4A11-AB9C-60C4FB9185DD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CF69ABAC-65DB-4304-82E0-7643EA8E98F0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CF69ABAC-65DB-4304-82E0-7643EA8E98F0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CF69ABAC-65DB-4304-82E0-7643EA8E98F0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CF69ABAC-65DB-4304-82E0-7643EA8E98F0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -74,6 +80,7 @@ Global
 		{BA12ABA1-C9A0-4F68-A32F-8F76898CB1DB} = {2E0B00AF-CF5F-419C-A63F-BCB6FF075C22}
 		{8237528B-591F-4F47-B72F-83E69DB53A9D} = {7149F074-CE9D-4AC2-A76D-1A587C102BAB}
 		{3EF8B220-51E3-4A11-AB9C-60C4FB9185DD} = {73B85CE9-2EC9-4595-A73D-85049A18A422}
+		{CF69ABAC-65DB-4304-82E0-7643EA8E98F0} = {FEA090FF-70B9-43BF-AD8D-2D6627C83C94}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {3E476454-6698-4B23-9523-ACD432C55DCB}

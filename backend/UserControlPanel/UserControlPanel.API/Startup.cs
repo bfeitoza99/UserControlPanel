@@ -1,6 +1,7 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Hosting.Server;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -42,11 +43,11 @@ namespace UserControlPanel.API
 
             var applicationAssembly = AppDomain.CurrentDomain.Load("UserControlPanel.Application");
             services.AddMediatR(applicationAssembly);
-
-            System.Threading.Thread.Sleep(15000);
+            
+            
             services.AddDbContext<UserControlPanelContext>(options =>
             {
-                options.UseSqlServer("Initial Catalog=UserControlPanel; Data Source=sqldata; Persist Security Info=False;User ID=sa;Password=1234Teste@;Encrypt=False;", x =>
+                options.UseSqlServer("Server=localhost; Integrated Security =true; Database=UserControlPanel;Trusted_Connection=True; Encrypt=False; Persist Security Info =False;", x =>
                 {
                     x.MigrationsAssembly("UserControlPanel.Data");
                 });
