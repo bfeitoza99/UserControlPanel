@@ -157,6 +157,7 @@ constructor(private fb: FormBuilder,
       let response = await this.userService.createAsync(this.getFields())
       if(!response.isSucess) {
         this.toastr.error(response.message);
+        return;
       }
       this.toastr.success(response.message);
       this.enableAllField();
