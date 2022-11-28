@@ -26,6 +26,10 @@ namespace UserControlPanel.Application.Command.User
         {
             try
             {
+                var userCreated = await _userRepository.FindByCpf(request.Cpf);
+                if(userCreated != null)
+                    return new UserCommandResponse(false, "CPF já cadastrado!");
+
                 var user = _mapper.Map<Domain.Entities.User.User>(request);
 
                 _userRepository.Save(user);

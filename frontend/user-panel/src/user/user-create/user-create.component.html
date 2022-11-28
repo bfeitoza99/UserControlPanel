@@ -1,11 +1,11 @@
 <div class="row align-items-center" >
-<h1 class=""> Painel de Controle de Usuário</h1>
+<h1 class="text-center"> Painel de Controle de Usuário</h1>
 </div>
 
 <form [formGroup]="userForm" *ngIf="genders.length > 0">
 
     <div class="row row_skiping">
-        <div class="form-group col-3">
+        <div class="form-group col-4">
         <label for="name">Nome</label>
         <input  formControlName="name" class="form-control" id="name"  placeholder="Digite seu nome">
           <div class="red_color" *ngIf="userForm.controls['name']?.errors?.['required'] && isSubmiting">
@@ -13,7 +13,7 @@
           </div>
         </div>
 
-        <div class="form-group col-2">
+        <div class="form-group col-4">
             <label for="cpf">CPF</label>
             <input  formControlName="cpf"  mask="000.000.000-00" class="form-control" id="cpf" ui-mask="999.999.999-99" placeholder="Digite seu CPF">
               <div class="red_color" *ngIf="userForm.controls['cpf']?.errors?.['required'] && isSubmiting">
@@ -24,15 +24,17 @@
               </div>
         </div>
 
-        <div class="form-group col-2">
+        <div class="form-group col-4">
             <label for="email">Email</label>
             <input  formControlName="email" class="form-control" id="email"  placeholder="Digite seu email">
               <div class="red_color" *ngIf="userForm.controls['email']?.errors?.['required'] && isSubmiting">
                 Campo Email é obrigatório
               </div>
         </div>
+      </div>
+        <div class="row row_skiping">
 
-        <div class="form-group col-2">
+        <div class="form-group col-4">
           <label for="number">Número</label>
           <input  formControlName="number" mask="(00) 00000-0000" class="form-control" id="number"  placeholder="(dd) xxxxx-xxxx">
             <div class="red_color" *ngIf="userForm.controls['number']?.errors?.['required'] && isSubmiting">
@@ -40,14 +42,14 @@
             </div>
         </div>
 
-      <div class="form-group col-2">
+      <div class="form-group col-4">
         <label for="birthDate">Data Nascimento</label>
         <input  formControlName="birthDate" type="date" class="form-control" id="birthDate"  >
           <div class="red_color" *ngIf="userForm.controls['birthDate']?.errors?.['required'] && isSubmiting">
             Campo Data Nascimento é obrigatório
           </div>
       </div>
-      <div class="form-group col-1">
+      <div class="form-group col-4">
         <label for="gender">Gênero</label>
         <select class="form-control" id="country" formControlName="gender" >
           <option value="default">Selecione</option>

@@ -10,5 +10,7 @@ namespace UserControlPanel.Domain.Interfaces.Repository
     public interface IUserRepository
     {
         void Save(User user);
+
+        Task<User> FindByCpf(string cpf);
     }
 }

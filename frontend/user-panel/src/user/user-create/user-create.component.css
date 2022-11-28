@@ -9,10 +9,10 @@
 .spinner_container {   
     left: 50%;
     position: absolute;
-    top: 30%;   
+    top: 50%;   
     stroke: brown !important;
 }
 
 .mat-progress-spinner circle, .mat-spinner circle {
     stroke: #3fb53f;
-    }
+}

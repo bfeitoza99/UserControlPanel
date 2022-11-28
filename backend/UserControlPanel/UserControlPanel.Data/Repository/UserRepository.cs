@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -22,6 +23,11 @@ namespace UserControlPanel.Data.Repository
         public void Save(User user)
         {
             _context.User.Add(user);
-        }        
+        }  
+        
+        public async Task<User> FindByCpf(string cpf)
+        {
+           return await _context.User.FirstOrDefaultAsync(x=> x.Cpf == cpf);
+        }
     }
 }

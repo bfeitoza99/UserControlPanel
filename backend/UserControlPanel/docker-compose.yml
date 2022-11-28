@@ -1,7 +1,7 @@
 version: "3.9"
 services:
   userpanel:
-    image: "userpanel_back"
+    image: "bfeitoza99/userpanel_back"
     build:
       context: .
     ports:
@@ -18,6 +18,6 @@ services:
       - "1450:1433"
 
   userpanel_web:
-    image: userpanel_front
+    image: "bfeitoza99/userpanel_front"
     ports:
       - "8080:80"    
